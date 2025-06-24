@@ -1,0 +1,38 @@
+# ───── Python Specific ─────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# ───── Virtual Environment ─────
+venv/
+.env
+.env.*
+
+# ───── Flask Uploads & Generated Files ─────
+static/reports/
+static/evidence/
+instance/
+
+# ───── Model Checkpoints or Large Files ─────
+*.h5
+*.bin
+*.pt
+*.ckpt
+*.safetensors
+
+# ───── IDE / Editor Settings ─────
+.vscode/
+.idea/
+*.swp
+
+# ───── OS Files ─────
+.DS_Store
+Thumbs.db
+
+# ───── Dependency Lock Files (if not used) ─────
+Pipfile.lock
+poetry.lock
+
+# (No need to ignore render.yaml or .gitignore itself)
