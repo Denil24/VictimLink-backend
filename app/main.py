@@ -11,11 +11,9 @@ app.register_blueprint(upload_bp)
 def index():
     return "VictimLink Backend is Running ✅"
 
-# ✅ MongoDB Connection Test Route
 @app.route('/dbstatus')
 def db_status():
     try:
-        # Simple ping to check if DB is responsive
         collection.database.command("ping")
         return jsonify({"status": "MongoDB connection successful ✅"}), 200
     except Exception as e:
@@ -25,4 +23,4 @@ def db_status():
         }), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True)  # ✅ Works locally, ignored on Render
