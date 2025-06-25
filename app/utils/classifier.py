@@ -1,21 +1,19 @@
 from transformers import pipeline
 
-# Load model and tokenizer from local path
+# ✅ Load pre-trained abuse classification model from Hugging Face
 classifier = pipeline(
     "text-classification",
-    model="app/models/toxic_bert",
-    tokenizer="app/models/toxic_bert"
+    model="unitary/toxic-bert",     # ✅ cloud-hosted
+    tokenizer="unitary/toxic-bert"  # ✅ cloud-hosted
 )
 
-# Abuse categories (you can tweak or expand this list)
+# Abuse categories (can be adjusted)
 ABUSE_LABELS = ["Blackmail", "Harassment", "Scam", "Threat", "Hate Speech"]
 
-# Dummy mapping logic for now (based on max score)
 def classify_text(text):
     results = []
 
     for label in ABUSE_LABELS:
-        # Construct prompt-like input (helps with classification signal)
         combined_text = f"{text} This message sounds like {label}."
         output = classifier(combined_text)[0]
         results.append((label, output['score']))
