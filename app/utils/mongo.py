@@ -1,18 +1,17 @@
+# 📁 backend/app/utils/mongo.py
+
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv()  # ✅ Load environment variables from .env
 
 MONGO_URI = os.getenv("MONGO_URI")
-print("[DEBUG] Using URI:", MONGO_URI)
+client = MongoClient(MONGO_URI)
+collection = client["VictimLink"]["evidence"]  # Adjust DB & collection names if needed
 
 try:
-    client = MongoClient(MONGO_URI)
     client.admin.command("ping")
-    print("[✅ MongoDB] Connection successful!")
+    print("[✅ MongoDB] Connected successfully.")
 except Exception as e:
-    print("[❌ MongoDB] Connection failed:", e)
-
-db = client["VictimLink"]
-collection = db["evidence_logs"]
+    print(f"[❌ MongoDB] Connection failed: {e}")
