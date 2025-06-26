@@ -5,3 +5,4 @@ torch
 cryptography
 gunicorn
 pymongo
+python-dotenv
