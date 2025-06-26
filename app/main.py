@@ -1,7 +1,8 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from app.routes.upload import upload_bp
-from app.utils.mongo import collection  # ✅ MongoDB connection
+from app.utils.mongo import collection
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -23,4 +24,5 @@ def db_status():
         }), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)  # ✅ Works locally, ignored on Render
+    port = int(os.environ.get("PORT", 5000))  # ✅ Use PORT env if available
+    app.run(host="0.0.0.0", port=port)
